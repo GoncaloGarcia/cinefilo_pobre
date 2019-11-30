@@ -22,9 +22,9 @@ def fetch_and_parse_MEO():
         r = requests.post(url = url, json = req_body)
         print(channel) 
         try:
-            parsed_all = jq('.d.channels[] | .name as $channel | {"name" : .programs[].name, "channel" : $channel}').transform(r.json(), multiple_output=True)
+            parsed_all = jq('.d.channels[] | .name as $channel | .programs[] | {"name" : .name, "time" : (.date + " " + .timeIni), "channel" : $channel}').transform(r.json(), multiple_output=True)
             for parsed in parsed_all: 
-                sql = "INSERT INTO tv (title, channel) values ('%s', '%s')" % (parsed["name"].replace("'", "''"),parsed["channel"])
+                sql = "INSERT INTO tv (title, channel, time) values ('%s', '%s', '%s')" % (parsed["name"].replace("'", "''"),parsed["channel"], parsed["time"])
                 con.cursor().execute(sql)
                 con.commit()
         except Exception as e:
