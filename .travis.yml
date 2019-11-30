@@ -1,8 +1,6 @@
-language: python
-
 branches:
   only:
-    - master
+    - site
 
 deploy:
   provider: s3
