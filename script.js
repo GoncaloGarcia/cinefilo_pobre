@@ -1,7 +1,7 @@
 var csvarray;
 var channels;
 d3.text("out.csv", function(data) {
-	var parsedCSV = d3.csv.parseRows(data);
+	var parsedCSV = d3.tsv.parseRows(data);
 	csvarray = parsedCSV;
 	channels = new Set(csvarray.map(arr => arr[2])
 		.map(value => value.split(","))
@@ -16,8 +16,19 @@ d3.text("out.csv", function(data) {
 		.data(function(d) { return d; }).enter()
 		.append("td")
 		.attr("align", "center")
-		.attr("valign", "middle")
-		.text(function(d) { return d; });
+		.attr("vertical-align", "middle")
+		.html(function(d) { 
+			if (d.startsWith("(")) {
+				var replaced = d.replace(/\(|\)/g, "").split("-");
+				var toPrint = "";
+				for (var item in replaced) {
+					var splitItems = replaced[item].split(",");
+					toPrint += "<a href=https://www.imdb.com/title/" +  splitItems[1] +  ">" + splitItems[0] + "</a> | "
+				}
+				return toPrint.slice(0, -3);
+			}
+			return d; 
+		});
 	d3.select(".dropdown-menu")
 		.selectAll(".dropdown-content")
 		.data([...channels])
@@ -39,6 +50,17 @@ d3.select("#sortAscending")
 	.on("click", function() {
 		var tablemy = d3.select("tbody").selectAll("tr").data(csvarray.reverse());
 		var elements = tablemy.selectAll("td").data(function(d) { return d; });
-		elements.text(function(d) { return d; });
+		elements.html(function(d) {
+			if (d.startsWith("(")) {
+                                var replaced = d.replace(/\(|\)/g, "").split("-");
+                                var toPrint = "";
+                                for (var item in replaced) {
+                                        var splitItems = replaced[item].split(",");
+                                        toPrint += "<a href=https://www.imdb.com/title/" +  splitItems[1] +  ">" + splitItems[0] + "</a> | "
+                                }
+                                return toPrint.slice(0, -3);
+                        }
+                        return d; 
+		});
 	});
 
