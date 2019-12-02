@@ -1,8 +1,14 @@
 var csvarray;
 var channels;
+var exclusions;
+
+d3.text("exclusions.csv", function(data) {
+	exclusions = JSON.stringify(d3.csv.parseRows(data));
+});
+
 d3.text("out.csv", function(data) {
 	var parsedCSV = d3.tsv.parseRows(data);
-	csvarray = parsedCSV;
+	csvarray = parsedCSV.filter(item => !exclusions.includes(JSON.stringify([item[0],item[2]])));
 	channels = new Set(csvarray.map(arr => arr[2])
 		.map(value => value.split(","))
 		.flat()
