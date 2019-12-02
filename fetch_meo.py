@@ -4,6 +4,7 @@ import json
 import datetime
 import io
 import boto3
+import os
 
 channels = ["RTP1","RTP2","SIC","TVI","SICN","RTP3","CMTV", "FOXM","AMCHD","AXBHD","EURCHD","FOXHD","FLIFEH","FOXCHD","FOXCOH","AMCHD","AXBHD","EURCHD","FOXHD","FLIFEH","FOXCHD","FOXCOH","AXNHD","DISNYJ","KSICHD","BIGGS","CART","DISNY","KOMBH","EURS2H","EURHD", "TVC3HD","TVC4HD","CINEHD","HOLHD","FOXMH","AMCHD","AXBHD","EURCHD","FOXHD", "FLIFEH","FOXCHD","FOXCOH","AXNHD","AXWHD","SYFHD","TVSEHD","NETFLIX","DEST","DISCVHD", "HISTHD"
 ,"NGHD","NGWHD","RTPM","QHD","MTVPHD","TLC","SICCHD","MYCHD","24KTHD","TRVHD","LUXHD","FTV", "FTVHD","MCHIC","SMAISHD","TRAHD","RTPACR","RTPMA", "RTPA","TCV","BBC E", "NHK","CGTNHD","CGTNDHD","RUSST","1RUSS","TVEI","TVE24", "TVGAL","G VIS","CUBAV","A3INTER","A3SERIE","A3CINE","SOMOS","SOLMUSI","CCOCINA","DECASA", "TV5HD","BFM","BFMB","I24F","FR24F","FR2HD","FR3HD","FR5HD","ARTEHD","RAI1", "DWTVA","EURNA","BVN","PHCNE", "RAI2","RAI3","RAINEWS","MAX","PBTVHD","SPTV4K", "EURSP","EURS2","SICK","TVC1","TVC2","TVC3","TVC4","CINE","HOLLW", "FOXM","AMC","AXNBL","EURCH","FOX","FLIFE","FOXCR","FOXCOM","AXN","AXNWH", "SYFY","TVSER","DISCV","HIST","ODISS","NGC","NGWIL","Q","SICR","MTV", "CI","SICC","E!"]
@@ -56,7 +57,7 @@ def fetch_and_parse_MEO(url, con):
 
 
 
-    s3 = boto3.Session(aws_access_key_id="AKIAQYEGLFZDBRZGE2E3",aws_secret_access_key="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").resource("s3")
+    s3 = boto3.Session(aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY']).resource("s3")
     print(s3)
     try:
         s3.Bucket('cinefilo-pobre').put_object(Key="out.csv", Body=f.getvalue()) 
