@@ -55,6 +55,11 @@ input[type="checkbox"] {
 
 }
 
+
+.column {
+	padding:0px;
+}
+
 p {
 
     font-family: 'Oswald', sans-serif;
