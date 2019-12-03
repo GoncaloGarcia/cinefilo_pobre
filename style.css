@@ -1,4 +1,4 @@
-body {
+html {
 	background: linear-gradient(90deg, #d53369 0%, #daae51 100%);;
 
 }
@@ -21,7 +21,6 @@ h1 {
 .dropdown-content {
 	border-radius: 0px;
 	 background-color:rgba(255, 255, 255, 0.8);
-	
 }
 
 input[type="checkbox"] {
@@ -30,6 +29,11 @@ input[type="checkbox"] {
 	margin-left: 5px;
 }
 
+#dropdown-menu {
+	padding-top: 0px;
+	max-height: 20em;
+	overflow: auto;
+}
 
 .div {
 
@@ -53,8 +57,9 @@ input[type="checkbox"] {
 
 p {
 
-    font-family: 'Oswald', sans-serif;i
+    font-family: 'Oswald', sans-serif;
     font-weight: medium;
+    color: white;
 }
 
 .table {

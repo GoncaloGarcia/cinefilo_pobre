@@ -3,6 +3,7 @@ var channels;
 var exclusions;
 var allrows;
 var alldata;
+var order = true;
 
 d3.text("out.csv", function(data) {
 	d3.csv("exclusions.csv", function(exclusions) {
@@ -87,6 +88,15 @@ d3.text("out.csv", function(data) {
 
 	d3.select("#sortAscending")
 		.on("click", function() {
+			var button = d3.select("#sortAscending").select(".fas");
+			if (order){
+				order = !order;
+				button.attr("class", "fas fa-sort-amount-up-alt");
+			}
+			else {
+				order = !order;
+				button.attr("class", "fas fa-sort-amount-down-alt");	
+			}
 			var tablemy = d3.select("tbody").selectAll("tr").data(csvarray.reverse());
 			var elements = tablemy.selectAll("td").data(function(d) { return d; });
 			elements.html(function(d) {
