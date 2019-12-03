@@ -5,42 +5,52 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Cinéfilo Pobre</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+		<link rel="stylesheet" href="style.css">
+
+
+		<link href="https://fonts.googleapis.com/css?family=Montserrat|Oswald|Limelight&display=swap" rel="stylesheet">
+
+
 		<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 	</head>
 	<body>
+				<section class="section">
+					<div class="columns is-centered has-text-centered is-size-1-mobile">
+
+
+					<h1>Cinéfilo Pobre</h1>
+					</div>
+				</section>
 		<section class="section">
 			<div class="columns is-centered">
-				<div class="column is-half" >
-
-					<div class="box">
-						<div class="dropdown is-hoverable">
-							<div class="dropdown-trigger">
-								<button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-									<span>Canais</span>
-									<span class="icon is-small"> <i class="fas fa-angle-down" aria-hidden="true"></i> </span>
-								</button>
-							</div>
-							<div class="dropdown-menu" id="dropdown-menu" role="menu"></div>
+				<div class="column is-half is-size-7-mobile" >
+					<div class="dropdown is-hoverable">
+						<div class="dropdown-trigger">
+							<button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+								<span>Canais</span>
+								<span class="icon is-small"> <i class="fas fa-angle-down" aria-hidden="true"></i> </span>
+							</button>
 						</div>
-						<button class="button" id="sortAscending">Reverse Sort</button>
-
-						<table class="table  table is-striped" style="width: 100%;">
-							<thead >
-								<tr>
-									<th align="center"><abbr title="Filme">Filme</abbr></th>
-									<th align="center"><abbr title="Nota IMDB">IMDB</abbr></th>
-									<th align="center"><abbr title="Canais">Canais</abbr></th>
-									<th align="center"><abbr title="Datas">Datas</abbr></th>
-								</tr>
-							</thead>
-							<tbody></tbody>
-							<tfoot>
-						</table>
-						<script src="http://d3js.org/d3.v3.min.js"></script> 
-						<script src="script.js" type="text/javascript"charset="utf-8">
-							});
-						</script>
+						<div class="dropdown-menu" id="dropdown-menu" role="menu"></div>
 					</div>
+					<button class="button" id="sortAscending">Reverse Sort</button>
+
+					<table class="table  table is-striped" style="width: 100%;">
+						<thead >
+							<tr>
+								<th align="center"><p title="Filme">Filme</p></th>
+								<th align="center"><p title="Nota IMDB">IMDB</p></th>
+								<th align="center"><p title="Canais">Canais</p></th>
+								<th align="center"><p title="Datas">Datas</p></th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+						<tfoot>
+					</table>
+					<script src="http://d3js.org/d3.v3.min.js"></script> 
+					<script src="script.js" type="text/javascript"charset="utf-8">
+						});
+					</script>
 				</div>
 			</div>
 		</section>

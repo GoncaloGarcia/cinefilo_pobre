@@ -12,7 +12,7 @@ d3.text("out.csv", function(data) {
 	channels = new Set(csvarray.map(arr => arr[2])
 		.map(value => value.split(","))
 		.flat()
-		.map(str => str.trim()))
+		.map(str => str.trim()).map(str => str.split("<br>")[0]));
 	d3.select("tbody")
 		.selectAll("tr")
 		.data(csvarray)
