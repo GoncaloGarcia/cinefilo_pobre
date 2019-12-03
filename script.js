@@ -1,7 +1,8 @@
 var csvarray;
 var channels;
 var exclusions;
-
+var allrows;
+var alldata;
 d3.text("exclusions.csv", function(data) {
 	exclusions = JSON.stringify(d3.csv.parseRows(data));
 });
@@ -9,13 +10,14 @@ d3.text("exclusions.csv", function(data) {
 d3.text("out.csv", function(data) {
 	var parsedCSV = d3.tsv.parseRows(data);
 	csvarray = parsedCSV.filter(item => !exclusions.includes(JSON.stringify([item[0],item[2]])));
+	alldata=[...csvarray];
 	channels = new Set(csvarray.map(arr => arr[2])
 		.map(value => value.split(","))
 		.flat()
 		.map(str => str.trim()).map(str => str.split("<br>")[0]));
 	d3.select("tbody")
 		.selectAll("tr")
-		.data(csvarray)
+		.data(csvarray, function(d) { return d; })
 		.enter()
 		.append("tr")
 		.selectAll("td")
@@ -42,8 +44,39 @@ d3.text("out.csv", function(data) {
 		.attr("class", "dropdown-content")
 		.append("input")
 		.attr("type", "checkbox")
+		.property("checked", "true")
 		.on("change", function() {
-		//	console.log(d3.selectAll("input").select(this.parentNode).select("label").text());
+			var filtered = d3.selectAll("input")[0].filter(item => item["checked"] === true).map(item => item.__data__);
+			csvarray = [...alldata];
+			console.log(csvarray);
+			csvarray = csvarray.filter(item => filtered.includes(item[2].split("<br>")[0]));
+			console.log(csvarray);
+			var rows = d3.select("tbody")
+				.selectAll("tr")
+				.data(csvarray, function (d) { return d;});
+			allrows = rows;
+			rows.exit().remove();
+			rows.enter()
+				.append("tr")
+				.selectAll("td")
+				.data(function(d) { return d; }).enter()
+				.append("td")
+				.attr("align", "center")
+				.attr("vertical-align", "middle")
+				.html(function(d) {
+					if (d.startsWith("(")) {
+						var replaced = d.replace(/\(|\)/g, "").split("-");
+						var toPrint = "";
+						for (var item in replaced) {
+							var splitItems = replaced[item].split(",");
+							toPrint += "<a href=https://www.imdb.com/title/" +  splitItems[1] +  ">" + splitItems[0] + "</a> | "
+						}
+						return toPrint.slice(0, -3);
+					}
+					return d;
+				});
+			rows.order();
+
 		});
 	d3.select(".dropdown-menu")
 		.selectAll(".dropdown-content")
@@ -58,15 +91,15 @@ d3.select("#sortAscending")
 		var elements = tablemy.selectAll("td").data(function(d) { return d; });
 		elements.html(function(d) {
 			if (d.startsWith("(")) {
-                                var replaced = d.replace(/\(|\)/g, "").split("-");
-                                var toPrint = "";
-                                for (var item in replaced) {
-                                        var splitItems = replaced[item].split(",");
-                                        toPrint += "<a href=https://www.imdb.com/title/" +  splitItems[1] +  ">" + splitItems[0] + "</a> | "
-                                }
-                                return toPrint.slice(0, -3);
-                        }
-                        return d; 
+				var replaced = d.replace(/\(|\)/g, "").split("-");
+				var toPrint = "";
+				for (var item in replaced) {
+					var splitItems = replaced[item].split(",");
+					toPrint += "<a href=https://www.imdb.com/title/" +  splitItems[1] +  ">" + splitItems[0] + "</a> | "
+				}
+				return toPrint.slice(0, -3);
+			}
+			return d; 
 		});
 	});
 
