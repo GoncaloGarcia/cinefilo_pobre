@@ -55,6 +55,9 @@ input[type="checkbox"] {
 
 }
 
+#sorter {
+	font-size:24px;	
+}
 
 .column {
 	padding:0px;

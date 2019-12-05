@@ -88,14 +88,14 @@ d3.text("out.csv", function(data) {
 
 	d3.select("#sortAscending")
 		.on("click", function() {
-			var button = d3.select("#sortAscending").select(".fas");
+			var button = d3.select("#sortAscending").select(".la");
 			if (order){
 				order = !order;
-				button.attr("class", "fas fa-sort-amount-up-alt");
+				button.attr("class", "la la-sort-numeric-up");
 			}
 			else {
 				order = !order;
-				button.attr("class", "fas fa-sort-amount-down-alt");	
+				button.attr("class", "la la-sort-numeric-down-alt");	
 			}
 			var tablemy = d3.select("tbody").selectAll("tr").data(csvarray.reverse());
 			var elements = tablemy.selectAll("td").data(function(d) { return d; });
