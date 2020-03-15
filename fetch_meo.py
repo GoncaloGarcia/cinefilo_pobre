@@ -57,7 +57,7 @@ def fetch_and_parse_MEO(url, con):
 
 
 
-    s3 = boto3.Session(aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY']).resource("s3")
+    s3 = boto3.resource("s3")
     print(s3)
     try:
         s3.Bucket('cinefilo-pobre').put_object(Key="out.csv", Body=f.getvalue()) 
@@ -75,3 +75,4 @@ def lambda_handler(event, context):
     fetch_and_parse_MEO(url, con)
     con.close()
 
+lambda_handler("A", "B")

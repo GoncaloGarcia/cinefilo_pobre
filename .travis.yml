@@ -1,6 +1,4 @@
 branches:
-  only:
-    - site
 
 deploy:
   provider: s3
