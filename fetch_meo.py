@@ -6,8 +6,7 @@ import io
 import boto3
 import os
 
-channels = ["RTP1","RTP2","SIC","TVI","SICN","RTP3","CMTV", "FOXM","AMCHD","AXBHD","EURCHD","FOXHD","FLIFEH","FOXCHD","FOXCOH","AMCHD","AXBHD","EURCHD","FOXHD","FLIFEH","FOXCHD","FOXCOH","AXNHD","DISNYJ","KSICHD","BIGGS","CART","DISNY","KOMBH","EURS2H","EURHD", "TVCTOPH","TVCEDIH","CINEHD","HOLHD","FOXMH","AMCHD","AXBHD","EURCHD","FOXHD", "FLIFEH","FOXCHD","FOXCOH","AXNHD","AXWHD","SYFHD","TVSEHD","NETFLIX","DEST","DISCVHD", "HISTHD"
-,"NGHD","NGWHD","RTPM","QHD","MTVPHD","TLC","SICCHD","MYCHD","24KTHD","TRVHD","LUXHD","FTV", "FTVHD","MCHIC","SMAISHD","TRAHD","RTPACR","RTPMA", "RTPA","TCV","BBC E", "NHK","CGTNHD","CGTNDHD","RUSST","1RUSS","TVEI","TVE24", "TVGAL","G VIS","CUBAV","A3INTER","A3SERIE","A3CINE","SOMOS","SOLMUSI","CCOCINA","DECASA", "TV5HD","BFM","BFMB","I24F","FR24F","FR2HD","FR3HD","FR5HD","ARTEHD","RAI1", "DWTVA","EURNA","BVN","PHCNE", "TVCEMOH","TVCACTH","RAINEWS","MAX","PBTVHD","SPTV4K", "EURSP","EURS2","SICK","TVC1","TVC2","TVC3","TVC4","CINE","HOLLW", "FOXM","AMC","AXNBL","EURCH","FOX","FLIFE","FOXCR","FOXCOM","AXN","AXNWH", "SYFY","TVSER","DISCV","HIST","ODISS","NGC","NGWIL","Q","SICR","MTV", "CI","SICC","E!"]
+channels = ["RTP1","RTP2","SIC","TVI","SICN","RTP3","CMTV", "FOXM","AMCHD","AXBHD","EURCHD","FOXHD","FLIFEH","FOXCHD","FOXCOH","AMCHD","AXBHD","EURCHD","FOXHD","FLIFEH","FOXCHD","FOXCOH","AXNHD","DISNYJ","KSICHD","BIGGS","CART","DISNY","KOMBH","EURS2H","EURHD", "TVCTOPH","TVCEDIH","CINEHD","HOLHD","FOXMH","AMCHD","AXBHD","EURCHD","FOXHD", "FLIFEH","FOXCHD","FOXCOH","AXNHD","AXWHD","SYFHD","TVSEHD","NETFLIX","DEST","DISCVHD", "HISTHD","NGHD","NGWHD","RTPM","QHD","MTVPHD","TLC","SICCHD","MYCHD","24KTHD","TRVHD","LUXHD","FTV", "FTVHD","MCHIC","SMAISHD","TRAHD","RTPACR","RTPMA", "RTPA","TCV","BBC E", "NHK","CGTNHD","CGTNDHD","RUSST","1RUSS","AXNM","AXNMHD", "TVGAL","G VIS","CUBAV","A3INTER","A3SERIE","A3CINE","SOMOS","SOLMUSI","CCOCINA","DECASA", "TV5HD","BFM","BFMB","I24F","FR24F","FR2HD","FR3HD","FR5HD","ARTEHD","RAI1", "DWTVA","EURNA","BVN","PHCNE", "TVCEMOH","TVCACTH","RAINEWS","MAX","PBTVHD","SPTV4K", "EURSP","EURS2","SICK","TVC1","TVC2","TVC3","TVC4","CINE","HOLLW", "FOXM","AMC","AXNBL","EURCH","FOX","FLIFE","FOXCR","FOXCOM","AXN","AXNWH", "SYFY","TVSER","DISCV","HIST","ODISS","NGC","NGWIL","Q","SICR","MTV", "CI","SICC","E!"]
 
 
 query_out = """
@@ -60,7 +59,7 @@ def fetch_and_parse_MEO(url, con):
     s3 = boto3.resource("s3")
     print(s3)
     try:
-        s3.Bucket('cinefilo-pobre').put_object(Key="out.csv", Body=f.getvalue()) 
+        s3.Bucket('www.cinefilopobre.com').put_object(Key="out.csv", Body=f.getvalue()) 
         print("Upload Successful")
     except FileNotFoundError:
         print("The file was not found")
@@ -75,4 +74,3 @@ def lambda_handler(event, context):
     fetch_and_parse_MEO(url, con)
     con.close()
 
-lambda_handler("A", "B")
