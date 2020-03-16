@@ -1,0 +1,91 @@
+{
+  "d": {
+    "__type": "Ptsi.Isites.GridTv.CanaisService.GridTV",
+    "ExtensionData": {},
+    "services": [],
+    "channels": [
+      {
+        "__type": "Ptsi.Isites.GridTv.CanaisService.Channels",
+        "ExtensionData": {},
+        "id": 20,
+        "name": "SPORT.TV1",
+        "sigla": "SPTV1",
+        "friendlyUrlName": "",
+        "url": "https://www.meo.pt/tv/SPTV1",
+        "meogo": false,
+        "logo": "https://www.meo.pt/PublishingImages/canais/sport-tv1.png",
+        "isAdult": false,
+        "categories": [
+          {
+            "ExtensionData": {},
+            "id": 2,
+            "name": "Desporto"
+          }
+        ],
+        "types": [
+          {
+            "ExtensionData": {},
+            "id": 0,
+            "name": "Gravações Automáticas"
+          },
+          {
+            "ExtensionData": {},
+            "id": 1,
+            "name": "Restart TV"
+          }
+        ],
+        "programs": [
+          {
+            "ExtensionData": {},
+            "date": "15-3-2020",
+            "timeIni": "22:50",
+            "timeEnd": "00:50",
+            "number": 13753664,
+            "uniqueId": "16416719",
+            "name": "Reds x Bulls - Super Rugby",
+            "synopse": null,
+            "imageM": null,
+            "imageL": null,
+            "imageXL": null,
+            "recordType": 0,
+            "recordingDefinitionID": "00000000-0000-0000-0000-000000000000",
+            "recordingProgramID": "00000000-0000-0000-0000-000000000000",
+            "seriesID": "1525522194"
+          }
+        ],
+        "moreInfo": {
+          "ExtensionData": {},
+          "Label": "Saiba mais",
+          "Link": "https://www.meo.pt/tv/canais-servicos-tv/premium/sport-tv"
+        },
+        "programacaoCanal": {
+          "ExtensionData": {},
+          "Label": null,
+          "Link": null
+        }
+      }
+    ],
+    "filters": {
+      "ExtensionData": {},
+      "types": [
+        {
+          "ExtensionData": {},
+          "id": 0,
+          "name": "Gravações Automáticas"
+        },
+        {
+          "ExtensionData": {},
+          "id": 1,
+          "name": "Restart TV"
+        }
+      ],
+      "categories": [
+        {
+          "ExtensionData": {},
+          "id": 2,
+          "name": "Desporto"
+        }
+      ]
+    }
+  }
+}
