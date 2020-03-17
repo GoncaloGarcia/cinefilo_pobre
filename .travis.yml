@@ -4,6 +4,8 @@ branches:
   only:
     - master
 
+script: python fetch_meo_test.py
+
 deploy:
   provider: s3
   access_key_id: $AWS_ACCESS_KEY
