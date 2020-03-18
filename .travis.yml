@@ -7,13 +7,13 @@ branches:
 script: python fetch_meo_test.py
 
 deploy:
-  provider: script
-  script: deploy_script.sh
-  on:
-     branch: master
-  provider: s3
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
-  bucket: "www.cinefilopobre.com"
-  on:
+  - provider: script
+    script: deploy_script.sh
+    on:
+        branch: master
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: "www.cinefilopobre.com"
+    on:
      branch: master
