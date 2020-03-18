@@ -8,7 +8,7 @@ script: python fetch_meo_test.py
 
 deploy:
     - provider: script
-      script: deploy_script.sh
+      script: bash deploy_script.sh
       on:
           branch: master
     - provider: s3
