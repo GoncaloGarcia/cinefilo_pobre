@@ -11,6 +11,7 @@ logging.basicConfig(level = logging.INFO)
 
 
 def fetch_and_parse_MEO(url, con, s3, string_io):
+    logging.info("Begin processing")
     truncate_db(con)
     for channel in constants.channels:
         date_today = datetime.datetime.now()
@@ -36,12 +37,13 @@ def fetch_and_parse_MEO(url, con, s3, string_io):
         logging.info("Credentials not available")
 
 def truncate_db(con):
+    logging.info("Truncating DB")
     con.cursor().execute("TRUNCATE TABLE tv")
 
 def write_to_postgres(con, channelName, progDate, progName):
     try:
         sql = "INSERT INTO tv (title, channel, time) values ('%s', '%s', '%s')" % (
-        progName.replace("'", "''"), channelName, progDate)
+            progName.replace("'", "''"), channelName, progDate)
         con.cursor().execute(sql)
         con.commit()
     except Exception as e:
